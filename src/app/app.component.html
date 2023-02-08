@@ -1,0 +1,20 @@
+<tui-root class="root">
+    <div class="root-title">Google books</div>
+    <form class="root-navigation" [formGroup]="navigationFormGroup">
+        <div tuiGroup class="group" [collapsed]="true">
+            <tui-radio-block
+                *ngFor="let chip of chipsConfig"
+                contentAlign="right"
+                formControlName="choosenChip"
+                item="{{ chip.item }}"
+                size="l"
+                [hideRadio]="true"
+            >
+                {{ chip.label }}
+            </tui-radio-block>
+        </div>
+    </form>
+    <div class="root-route">
+        <router-outlet></router-outlet>
+    </div>
+</tui-root>

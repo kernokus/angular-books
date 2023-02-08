@@ -1,0 +1,24 @@
+<tui-island *ngIf="book">
+    <div class="tui-island__content">
+        <div>
+            <h3 class="tui-island__title">{{ book.volumeInfo.title }}</h3>
+            <p class="tui-island__paragraph">
+                {{ book.volumeInfo.description }}
+            </p>
+            <p class="tui-island__paragraph tui-island__paragraph_link">
+                <a *ngIf="book.volumeInfo.previewLink" target="_blank" href="{{ book.volumeInfo.previewLink }}" tuiLink
+                    >Preview in Google</a
+                >
+            </p>
+        </div>
+
+        <div class="tui-island__figure">
+            <tui-svg
+                (click)="editFavoriteStatus(book)"
+                class="indicator"
+                [class.favorites]="book.isFavorites"
+                src="{{ book.isFavorites ? 'tuiIconStarFilledLarge' : 'tuiIconStarLarge' }}"
+            ></tui-svg>
+        </div>
+    </div>
+</tui-island>

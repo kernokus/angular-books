@@ -1,0 +1,13 @@
+<ng-container *ngIf="favoritesBooks$ | async as favoritesBooks">
+    <ng-container *ngIf="favoritesBooks?.length; else empty"
+        ><app-book
+            class="book"
+            (onEditFavoriteStatus)="onDeleteFavoriteBook($event)"
+            *ngFor="let book of favoritesBooks"
+            [book]="book"
+        ></app-book
+    ></ng-container>
+</ng-container>
+<ng-template #empty>
+    <app-empty-list>Список избранного пуст</app-empty-list>
+</ng-template>

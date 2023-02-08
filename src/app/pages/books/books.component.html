@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <tui-input class="input" formControlName="queryFieldControl">
+        Ключевые слова
+        <input tuiTextfield />
+    </tui-input>
+    <ng-container *ngIf="books$ | async as books; else empty">
+        <app-book (onEditFavoriteStatus)="onEditFavoriteStatus($event)" class="book" *ngFor="let book of books" [book]="book"></app-book>
+        <button
+            *ngIf="isCanMoreLoad$ | async"
+            tuiIconButton
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            icon="tuiIconDownloadLarge"
+            (click)="loadNextBooks()"
+        ></button>
+    </ng-container>
+    <ng-template #empty><app-empty-list>Список книг пуст</app-empty-list></ng-template>
+</form>
