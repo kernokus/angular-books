@@ -13,6 +13,9 @@ import { TuiInputModule, TuiRadioBlockModule } from '@taiga-ui/kit';
 import { HttpClientModule } from '@angular/common/http';
 import { EmptyListComponent } from './components/empty-list/empty-list.component';
 import { BookComponent } from './components/book/book.component';
+import { StoreModule } from '@ngrx/store';
+import { booksReducer } from './store/reducers/books.reducer';
+import { favoritesBooksReducer } from './store/reducers/favorites-books.reducer';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'books', pathMatch: 'full' },
@@ -37,6 +40,7 @@ export const routes: Routes = [
         TuiGroupModule,
         BookComponent,
         EmptyListComponent,
+        StoreModule.forRoot({books: booksReducer,favoritesBooks: favoritesBooksReducer}),
     ],
     providers: [],
     bootstrap: [AppComponent],
