@@ -3,7 +3,8 @@
         Ключевые слова
         <input tuiTextfield />
     </tui-input>
-    <ng-container *ngIf="books$ | async as books; else empty">
+        {{books$ | async | json}}
+    <!-- <ng-container *ngIf="books$ | async as books; else empty">
         <app-book (onEditFavoriteStatus)="onEditFavoriteStatus($event)" class="book" *ngFor="let book of books" [book]="book"></app-book>
         <button
             *ngIf="isCanMoreLoad$ | async"
@@ -13,6 +14,8 @@
             icon="tuiIconDownloadLarge"
             (click)="loadNextBooks()"
         ></button>
-    </ng-container>
+    </ng-container> -->
     <ng-template #empty><app-empty-list>Список книг пуст</app-empty-list></ng-template>
 </form>
+
+

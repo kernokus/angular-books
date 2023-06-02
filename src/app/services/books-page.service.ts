@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpService } from './http.service';
 import { Book, BookResponse } from '../model/book.model';
-import { BehaviorSubject, map, Subject, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject, takeUntil, tap } from 'rxjs';
 import { getFavorites, setFavoritesInStorage } from '../helpers/local-storage.helper';
 
 @Injectable()
@@ -36,6 +36,13 @@ export class BooksPageService implements OnDestroy {
 
     constructor(private httpService: HttpService) {
         this.loadBooks();
+    }
+
+    getBooks(queryField?: string): Observable<Book[]> {
+        if (!queryField) {
+            return of([])
+        }
+        return this.httpService.getBooks(queryField).pipe(map(response => response.items));
     }
 
     loadBooks(queryField?: string) {
