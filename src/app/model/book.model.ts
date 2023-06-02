@@ -1,5 +1,5 @@
 export interface BookResponse {
-    kind: string;
+    kind?: string;
     totalItems: number;
     items: Book[];
 }

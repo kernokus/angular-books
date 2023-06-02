@@ -38,13 +38,6 @@ export class BooksPageService implements OnDestroy {
         this.loadBooks();
     }
 
-    getBooks(queryField?: string): Observable<Book[]> {
-        if (!queryField) {
-            return of([])
-        }
-        return this.httpService.getBooks(queryField).pipe(map(response => response.items));
-    }
-
     loadBooks(queryField?: string) {
         if (queryField) {
             this.httpService

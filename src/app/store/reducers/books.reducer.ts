@@ -1,15 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
-
 import { BooksApiActions } from '../actions/books.actions';
-import { Book } from '../../model/book.model';
-import { state } from '@angular/animations';
+import { BookResponse } from '../../model/book.model';
 
-export const initialState: ReadonlyArray<Book> = [];
+export const initialState: BookResponse = {
+  items: [],
+  totalItems: 0
+}
 
 export const booksReducer = createReducer(
   initialState,
-  on(BooksApiActions.loadedBooks, (_state, {books}) => {
-    console.log('books',books);
-    return books
+  on(BooksApiActions.loadedBooks, (_state, { bookResponse }) => {
+    return bookResponse
   })
 );

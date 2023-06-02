@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../model/book.model';
+import { Book, BookResponse } from '../model/book.model';
 import { Observable, of } from 'rxjs';
 import { HttpService } from './http.service';
 import { map } from 'rxjs/operators';
@@ -9,10 +9,12 @@ export class BooksService {
 
   constructor(private httpService: HttpService) {}
 
-  getBooks(queryField?: string): Observable<Book[]> {
+  getBooks(queryField?: string): Observable<BookResponse> {
     if (!queryField) {
-        return of([])
+        return of({
+          totalItems: 0, items:[]
+        });
     }
-    return this.httpService.getBooks(queryField).pipe(map(response => response.items));
+    return this.httpService.getBooks(queryField);
 }
 }
